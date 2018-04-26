@@ -13,12 +13,12 @@ app.use((req, res, next)=> {
     var log = `${now}: ${req.method} ${req.url}`;
 
     console.log(log);
-    fs.appendFile('logs/server.log', log + '\n');
+    fs.appendFile('server.log', log + '\n');
     next();
 })
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// });
 app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('getCurrentYear', () => {
@@ -39,6 +39,12 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('about.hbs', {
         pageTitle: 'About page'
+    });
+});
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects page'
     });
 });
 
